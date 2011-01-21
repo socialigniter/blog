@@ -1,0 +1,8 @@
+@charset "utf-8";
+/* Blog CSS */
+#title		{ width: 620px; margin: 0px; }
+#tags		{ width: 360px; margin: 0px; }
+
+span.content_title			{ display: block; font-size: 14px; font-weight: bold; margin: 5px 0px 10px 0px; }
+span.content_contributor	{ display: block; font-size: 14px; font-weight: bold; margin: 5px 0px 10px 0px; }
+span.content_title			{ display: block; font-size: 14px; font-weight: bold; margin: 5px 0px 10px 0px; }
