@@ -1,5 +1,5 @@
 <?php
-class Blog extends Public_Controller
+class Blog extends Site_Controller
 {
     function __construct()
     {
