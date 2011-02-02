@@ -1,5 +1,5 @@
 <?php
-class Category extends Public_Controller {
+class Category extends Site_Controller {
 
 	function __construct() {
 	

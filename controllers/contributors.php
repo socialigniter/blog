@@ -1,5 +1,5 @@
 <?php
-class Contributors extends Public_Controller {
+class Contributors extends Site_Controller {
 
 	function __construct() {
 	

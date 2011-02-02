@@ -1,5 +1,5 @@
 <?php
-class Tags extends Public_Controller {
+class Tags extends Site_Controller {
 
 	function __construct() {
 	
