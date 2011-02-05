@@ -37,7 +37,7 @@ class Home extends Dashboard_Controller
 			$this->data['category_id']		= $article->category_id;
 			$this->data['access']			= $article->access;
 			$this->data['comments_allow']	= $article->comments_allow;
-			$this->data['status']			= $article->status;
+			$this->data['status']			= display_content_status($article->status, $article->approval);			
 		}
 		else
 		{		
@@ -52,8 +52,10 @@ class Home extends Dashboard_Controller
 			$this->data['category_id']		= '';
 			$this->data['access']			= 'E';
 			$this->data['comments_allow']	= '';
-			$this->data['status']			= 'U';
+			$this->data['status']			= display_content_status('U');
 		}
+		
+		
 
 		$this->data['wysiwyg_name']		= 'content';
 		$this->data['wysiwyg_id']		= 'wysiwyg_content';
@@ -64,6 +66,8 @@ class Home extends Dashboard_Controller
 		$this->data['wysiwyg_media']	= TRUE;			
 		$this->data['wysiwyg']	 		= $this->load->view($this->config->item('dashboard_theme').'/partials/wysiwyg', $this->data, true);
 		$this->data['categories'] 		= $this->social_tools->get_categories_dropdown('module', 'blog', $this->session->userdata('user_id'), $this->session->userdata('user_level_id'));
+
+	 	$this->data['social_post'] 		= $this->social_igniter->get_social_post('<ul class="social_post">', '</ul>');
 							
  		$this->render('dashboard_wide');
 	}
