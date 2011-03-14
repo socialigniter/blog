@@ -1,44 +1,38 @@
 <form name="blog_editor" id="blog_editor" action="<?= $form_url ?>" method="post" enctype="multipart/form-data">
 
 	<div id="content_wide_content">
-			<h3>Title</h3>
-			<input type="text" name="title" id="title" class="input_full" value="<?= $title ?>" />
-			<p id="title_slug" class="slug_url"></p>
+		<h3>Title</h3>
+		<input type="text" name="title" id="title" class="input_full" value="<?= $title ?>" />
+		<p id="title_slug" class="slug_url"></p>
 	
-			<h3>Content</h3>
-			<?= $wysiwyg ?>
-			    
-		    <h3>Category</h3>
-		    <?= form_dropdown('category_id', $categories, $category_id) ?> 
+		<h3>Content</h3>
+		<?= $wysiwyg ?>
 	
-		     <h3>Tags</h3>
-		     <input name="tags" type="text" id="tags" size="75" value="" />
-		     
-		    <h3>Comments</h3>
-			<?= form_dropdown('comments_allow', config_item('comments_allow'), $comments_allow) ?>
+	    <h3>Category</h3>
+	    <p><?= form_dropdown('category_id', $categories, $category_id) ?></p>
 	
-			<h3>Access</h3>
-			<?= form_dropdown('access', config_item('access'), $access) ?> 
-		                 
-			<input type="hidden" name="geo_lat" id="geo_lat" value="" />
-			<input type="hidden" name="geo_long" id="geo_long" value="" />
-			<input type="hidden" name="geo_accuracy" id="geo_accuracy" value="" />
+	     <h3>Tags</h3>
+	     <p><input name="tags" type="text" id="tags" size="75" value="" /></p>
+	     
+	    <h3>Comments</h3>
+		<p><?= form_dropdown('comments_allow', config_item('comments_allow'), $comments_allow) ?></p>
+	
+		<h3>Access</h3>
+		<p><?= form_dropdown('access', config_item('access'), $access) ?></p>
+	
+		<input type="hidden" name="geo_lat" id="geo_lat" value="" />
+		<input type="hidden" name="geo_long" id="geo_long" value="" />
+		<input type="hidden" name="geo_accuracy" id="geo_accuracy" value="" />
+
+		<input type="submit" name="publish" value="Save" />
+
 	</div>
 	
-	<div id="content_wide_sidebar">
-		<?php if ($social_post): ?>
-		<h3>Share</h3>
-		<?= $social_post ?>
-		<?php endif; ?>
-	
-		<h3>Status</h3>
-		<p id="content_status"><span class="actions action_<?= $status ?>"></span> <?= ucwords($status) ?></p>
-				
-		<p><input type="submit" name="publish" value="Publish" /> <input type="submit" name="save_draft" value="Save" /></p>
+	<div id="content_wide_toolbar">
+		<?= $content_publisher ?>
 	</div>
 
 </form>
-
 
 <div class="clear"></div>
 
@@ -74,8 +68,7 @@ $(document).ready(function()
 					if (result.status == 'success')
 					{
 				 		$('#content_message').notify({message: result.message + ' <a href="' + base_url + 'blog/view/' + result.data.content_id + '">' + result.data.title + '</a>'});
-				 		var status = displayContentStatus(result.data.status);				 		
-				 		$('#article_status').html(status);				 	
+				 		$('#content_status').html(displayContentStatus(result.data.status));				 	
 				 	}
 				 	else
 				 	{

@@ -62,7 +62,7 @@ class Blog extends Site_Controller
 			else					$comments_title = 'Write';
 			
 			$this->data['comments_title']		= $comments_title;			
-			$this->data['comments_list'] 		= $this->social_tools->render_children_comments($comments, '0');
+			$this->data['comments_list'] 		= $this->social_tools->render_comments_children($comments, '0');
 
 			// Write
 			$this->data['comment_name']			= $this->session->flashdata('comment_name');

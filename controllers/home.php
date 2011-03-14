@@ -25,6 +25,8 @@ class Home extends Dashboard_Controller
 		{
 			// Need is valid & access and such
 			$article = $this->social_igniter->get_content($this->uri->segment(4));
+			
+			if (!$article) redirect(base_url().'home/error');
 				
 			// Non Form Fields
 			$this->data['sub_title']		= $article->title;
@@ -57,17 +59,17 @@ class Home extends Dashboard_Controller
 		
 		
 
-		$this->data['wysiwyg_name']		= 'content';
-		$this->data['wysiwyg_id']		= 'wysiwyg_content';
-		$this->data['wysiwyg_class']	= 'wysiwyg_norm_full';
-		$this->data['wysiwyg_width']	= 640;
-		$this->data['wysiwyg_height']	= 300;
-		$this->data['wysiwyg_resize']	= TRUE;
-		$this->data['wysiwyg_media']	= TRUE;			
-		$this->data['wysiwyg']	 		= $this->load->view($this->config->item('dashboard_theme').'/partials/wysiwyg', $this->data, true);
-		$this->data['categories'] 		= $this->social_tools->get_categories_dropdown('module', 'blog', $this->session->userdata('user_id'), $this->session->userdata('user_level_id'));
+		$this->data['wysiwyg_name']			= 'content';
+		$this->data['wysiwyg_id']			= 'wysiwyg_content';
+		$this->data['wysiwyg_class']		= 'wysiwyg_norm_full';
+		$this->data['wysiwyg_width']		= 640;
+		$this->data['wysiwyg_height']		= 300;
+		$this->data['wysiwyg_resize']		= TRUE;
+		$this->data['wysiwyg_media']		= TRUE;			
+		$this->data['wysiwyg']	 			= $this->load->view($this->config->item('dashboard_theme').'/partials/wysiwyg', $this->data, true);
+		$this->data['categories'] 			= $this->social_tools->make_categories_dropdown('module', 'blog', $this->session->userdata('user_id'), $this->session->userdata('user_level_id'));
 
-	 	$this->data['social_post'] 		= $this->social_igniter->get_social_post('<ul class="social_post">', '</ul>');
+	 	$this->data['content_publisher'] 	= $this->load->view(config_item('dashboard_theme').'/partials/content_publisher', $this->data, true);
 							
  		$this->render('dashboard_wide');
 	}
@@ -79,11 +81,6 @@ class Home extends Dashboard_Controller
 		$this->data['articles'] = $this->social_igniter->get_content_view('module', 'blog');
 	
 		$this->render();
-	}
-
-	function edit()
-	{
-		redirect(base_url().'home/blog/manage/'.$this->uri->segment(4));
 	}
 
 	function users()
