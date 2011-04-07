@@ -5,6 +5,19 @@
 		<h3>Module</h3>
 		<p><?= form_dropdown('enabled', config_item('enable_disable'), $settings['blog']['enabled']) ?></p>
 	</div>
+	
+	
+	<h3>Permissions</h3>
+
+	<p>Create / Manage
+	<?= form_dropdown('crud_permission', config_item('users_levels'), $settings['blog']['crud_permission']) ?>
+	</p>
+
+</div>
+
+<span class="item_separator"></span>
+
+<div class="content_wrap_inner">		
 
 	<h3>Display</h3>
 

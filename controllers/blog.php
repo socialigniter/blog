@@ -24,11 +24,9 @@ class Blog extends Site_Controller
 	
 	function index()
 	{
-
 		$this->data['posts'] = $this->social_igniter->get_content_view('module', 'blog', config_item('blog_posts_per_page'));
 		$this->data['page_title'] = 'Blog';
 		$this->render();
-	
 	}
 
 	function view() 
@@ -61,8 +59,8 @@ class Blog extends Site_Controller
 			if ($comments_count)	$comments_title = $comments_count;
 			else					$comments_title = 'Write';
 			
-			$this->data['comments_title']		= $comments_title;			
-			$this->data['comments_list'] 		= $this->social_tools->render_comments_children($comments, '0');
+			$this->data['comments_title']		= $comments_title;
+			$this->data['comments_list'] 		= $this->social_tools->render_comments_children($comments, '0', $this->data['logged_user_id'], $this->data['logged_user_level_id']);
 
 			// Write
 			$this->data['comment_name']			= $this->session->flashdata('comment_name');
@@ -72,7 +70,6 @@ class Blog extends Site_Controller
 			$this->data['comment_type']			= 'page';
 			$this->data['geo_lat']				= $this->session->flashdata('geo_lat');
 			$this->data['geo_long']				= $this->session->flashdata('geo_long');
-			$this->data['geo_accuracy']			= $this->session->flashdata('geo_accuracy');
 			$this->data['comment_error']		= $this->session->flashdata('comment_error');
 			
 			// ReCAPTCHA Enabled
@@ -90,16 +87,13 @@ class Blog extends Site_Controller
 		}
 	
 		$this->render();
-		
 	}
 	
 	function day() 
 	{	
-	
 		$this->data['page_title'] = "Posts on Day";
 		
-		$this->render();
-		
+		$this->render();		
 	}	
 
 	function month() 
@@ -107,25 +101,27 @@ class Blog extends Site_Controller
 		$this->data['page_title'] = "Posts on Month";
 		
 		$this->render();
-		
 	}	
 
 	function year() 
 	{	
 		$this->data['page_title'] = "Posts on Year";
 		
-		$this->render();
-		
+		$this->render();		
 	}	
 	
 	/* Widgets */
-	function widgets_sidebar()
+	function widgets_sidebar_recent()
 	{
 		$this->data['posts'] = $this->social_igniter->get_content_view('type', 'article', 5);
 		
 		$this->load->view('partials/widgets_sidebar', $this->data);
-	
-	}	
+	}
 
-	
+	function widgets_sidebar_tags()
+	{
+		$this->data['posts'] = $this->social_tools->get_tags('type', 'article', 5);
+		
+		$this->load->view('partials/widgets_sidebar', $this->data);
+	}	
 }

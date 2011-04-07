@@ -25,7 +25,6 @@ class Home extends Dashboard_Controller
 		{
 			// Need is valid & access and such
 			$article = $this->social_igniter->get_content($this->uri->segment(4));
-			
 			if (!$article) redirect(base_url().'home/error');
 				
 			// Non Form Fields
@@ -57,8 +56,6 @@ class Home extends Dashboard_Controller
 			$this->data['status']			= display_content_status('U');
 		}
 		
-		
-
 		$this->data['wysiwyg_name']			= 'content';
 		$this->data['wysiwyg_id']			= 'wysiwyg_content';
 		$this->data['wysiwyg_class']		= 'wysiwyg_norm_full';
@@ -67,8 +64,11 @@ class Home extends Dashboard_Controller
 		$this->data['wysiwyg_resize']		= TRUE;
 		$this->data['wysiwyg_media']		= TRUE;			
 		$this->data['wysiwyg']	 			= $this->load->view($this->config->item('dashboard_theme').'/partials/wysiwyg', $this->data, true);
-		$this->data['categories'] 			= $this->social_tools->make_categories_dropdown('module', 'blog', $this->session->userdata('user_id'), $this->session->userdata('user_level_id'));
 
+		$this->data['form_module']			= 'blog';
+		$this->data['form_type']			= 'article';		
+		$this->data['form_name']			= 'blog_editor';
+		$this->data['categories'] 			= $this->social_tools->make_categories_dropdown('module', 'blog', $this->session->userdata('user_id'), $this->session->userdata('user_level_id'));
 	 	$this->data['content_publisher'] 	= $this->load->view(config_item('dashboard_theme').'/partials/content_publisher', $this->data, true);
 							
  		$this->render('dashboard_wide');

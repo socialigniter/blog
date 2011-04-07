@@ -1,4 +1,4 @@
-<form name="blog_editor" id="blog_editor" action="<?= $form_url ?>" method="post" enctype="multipart/form-data">
+<form name="<?= $form_name ?>" id="<?= $form_name ?>" action="<?= $form_url ?>" method="post" enctype="multipart/form-data">
 
 	<div id="content_wide_content">
 		<h3>Title</h3>
@@ -22,10 +22,6 @@
 	
 		<input type="hidden" name="geo_lat" id="geo_lat" value="" />
 		<input type="hidden" name="geo_long" id="geo_long" value="" />
-		<input type="hidden" name="geo_accuracy" id="geo_accuracy" value="" />
-
-		<input type="submit" name="publish" value="Save" />
-
 	</div>
 	
 	<div id="content_wide_toolbar">
@@ -37,52 +33,28 @@
 <div class="clear"></div>
 
 <script type="text/javascript">
+
+// Elements for Placeholder
+var validation_rules = [{
+	'element' 	: '#title', 
+	'holder'	: 'Ridiculously Cute Kitten Saves Owner From Fire', 
+	'message'	: 'You need an article title'
+},{
+	'element' 	: '#tags', 
+	'holder'	: 'Cats, Fires, Heroes, Cute', 
+	'message'	: ''	
+}]
+
 $(document).ready(function()
 {
 	// Placeholders
-	doPlaceholder('#title', 'Ridiculously Cute Kitten Saves Owner From Fire');
-	doPlaceholder('#tags', 'Cats, Fires, Heroes, Cute');
+	makePlaceholders(validation_rules);
+
+	// Slugify
 	$('#title').slugify({url:base_url+current_module+'/posts/', slug:'#title_slug', name:'title_url', slugValue:'<?= $title_url ?>'});
-	
-	// Write Article
-	$("#blog_editor").bind("submit", function(eve)
-	{
-		eve.preventDefault();
-		var valid_title		= isFieldValid('#title', "Ridiculously Cute Kitten Saves Owner From Fire", 'You need a title');
 
-		// Validation	
-		if (valid_title == true)
-		{	
-			var article_data = $('#blog_editor').serializeArray();
-			article_data.push({'name':'module','value':'blog'},{'name':'type','value':'article'},{'name':'source','value':'website'});
-
-			$(this).oauthAjax(
-			{
-				oauth 		: user_data,
-				url			: $(this).attr('ACTION'),
-				type		: 'POST',
-				dataType	: 'json',
-				data		: article_data,
-		  		success		: function(result)
-		  		{		  				  			  			
-					if (result.status == 'success')
-					{
-				 		$('#content_message').notify({message: result.message + ' <a href="' + base_url + 'blog/view/' + result.data.content_id + '">' + result.data.title + '</a>'});
-				 		$('#content_status').html(displayContentStatus(result.data.status));				 	
-				 	}
-				 	else
-				 	{
-					 	$('#content_message').html(result.message).addClass('message_alert').show('normal');
-					 	$('#content_message').oneTime(3000, function(){$('#content_message').hide('fast')});			
-				 	}	
-			 	}
-			});
-		}
-		else
-		{
-			eve.preventDefault();
-		}		
-	});
+	// Autocomplete Tags
+	autocomplete("[name=tags]", 'api/tags/all');
 
 	// Add Category
 	$('[name=category_id]').change(function()
