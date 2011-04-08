@@ -5,12 +5,19 @@
 		<h3>Module</h3>
 		<p><?= form_dropdown('enabled', config_item('enable_disable'), $settings['blog']['enabled']) ?></p>
 	</div>
-	
-	
+
 	<h3>Permissions</h3>
 
-	<p>Create / Manage
-	<?= form_dropdown('crud_permission', config_item('users_levels'), $settings['blog']['crud_permission']) ?>
+	<p>Create
+	<?= form_dropdown('create_permission', config_item('users_levels'), $settings['blog']['create_permission']) ?>
+	</p>
+
+	<p>Publish
+	<?= form_dropdown('publish_permission', config_item('users_levels'), $settings['blog']['publish_permission']) ?>	
+	</p>
+
+	<p>Manage All
+	<?= form_dropdown('manage_permission', config_item('users_levels'), $settings['blog']['manage_permission']) ?>	
 	</p>
 
 </div>
