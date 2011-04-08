@@ -48,42 +48,11 @@ class Blog extends Site_Controller
 		$this->data['article_link']		= post_link(config_item('blog_path'), config_item('blog_url_style'), $article->created_at, $article->title_url);		
 		$this->data['content_id']		= $article->content_id;
 		$this->data['comments_tool']	= '';
-		
+
 		// Comments
 		if ((config_item('blog_comments_allow') == 'TRUE') && ($article->comments_allow != 'N'))
-		{
-			// Get Comments
-			$comments 				= $this->social_tools->get_comments_content($article->content_id);		
-			$comments_count			= $this->social_tools->get_comments_content_count($article->content_id);
-			
-			if ($comments_count)	$comments_title = $comments_count;
-			else					$comments_title = 'Write';
-			
-			$this->data['comments_title']		= $comments_title;
-			$this->data['comments_list'] 		= $this->social_tools->render_comments_children($comments, '0', $this->data['logged_user_id'], $this->data['logged_user_level_id']);
-
-			// Write
-			$this->data['comment_name']			= $this->session->flashdata('comment_name');
-			$this->data['comment_email']		= $this->session->flashdata('comment_email');
-			$this->data['comment_write_text'] 	= $this->session->flashdata('comment_write_text');
-			$this->data['reply_to_id']			= $this->session->flashdata('reply_to_id');
-			$this->data['comment_type']			= 'page';
-			$this->data['geo_lat']				= $this->session->flashdata('geo_lat');
-			$this->data['geo_long']				= $this->session->flashdata('geo_long');
-			$this->data['comment_error']		= $this->session->flashdata('comment_error');
-			
-			// ReCAPTCHA Enabled
-			if ((config_item('comments_recaptcha') == 'TRUE') && (!$this->social_auth->logged_in()))
-			{			
-				$this->load->library('recaptcha');
-				$this->data['recaptcha']		= $this->recaptcha->get_html();
-			}
-			else
-			{
-				$this->data['recaptcha']		= '';
-			}
-			
-			$this->data['comments_write']		= $this->load->view(config_item('site_theme').'/partials/comments_write', $this->data, true);
+		{				
+			$this->data['comments_view'] = $this->social_tools->make_comments_section($article->content_id, 'page', $this->data['logged_user_id'], $this->data['logged_user_level_id']);
 		}
 	
 		$this->render();
