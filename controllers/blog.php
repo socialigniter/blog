@@ -24,8 +24,12 @@ class Blog extends Site_Controller
 	
 	function index()
 	{
-		$this->data['posts'] = $this->social_igniter->get_content_view('module', 'blog', config_item('blog_posts_per_page'));
+		$this->data['articles'] = $this->social_igniter->get_content_view('module', 'blog', config_item('blog_posts_per_page'));
 		$this->data['page_title'] = 'Blog';
+		
+		// Load Login Is Enabled
+		$this->data['sidebar'] = $this->render_widgets('sidebar');			
+		
 		$this->render();
 	}
 
@@ -54,6 +58,9 @@ class Blog extends Site_Controller
 		{				
 			$this->data['comments_view'] = $this->social_tools->make_comments_section($article->content_id, 'page', $this->data['logged_user_id'], $this->data['logged_user_level_id']);
 		}
+
+		// Load Login Is Enabled
+		$this->data['sidebar'] = $this->render_widgets('sidebar');		
 	
 		$this->render();
 	}
