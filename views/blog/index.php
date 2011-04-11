@@ -1,4 +1,5 @@
 <ul id="content_list">
+<li class="content_container"><h2>Blog</h2></li>
 <?php foreach ($articles as $article): $article_link = post_link($blog_path, $url_style, $article->created_at, $article->title_url); ?>
 
 <li class="content_container">

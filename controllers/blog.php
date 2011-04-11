@@ -20,15 +20,16 @@ class Blog extends Site_Controller
 		$this->data['abbreviate_length']	= config_item('blog_abbreviate_length');
 		$this->data['posts_per_page']		= config_item('blog_posts_per_page');
 		$this->data['comments_allow']		= config_item('blog_comments_allow');
+
 	}
 	
 	function index()
 	{
 		$this->data['articles'] = $this->social_igniter->get_content_view('module', 'blog', config_item('blog_posts_per_page'));
-		$this->data['page_title'] = 'Blog';
+		$this->data['page_title'] = 'Blog';		
 		
-		// Load Login Is Enabled
-		$this->data['sidebar'] = $this->render_widgets('sidebar');			
+		// Widgets
+		$this->data['sidebar'] = $this->render_widgets('sidebar');		
 		
 		$this->render();
 	}
@@ -61,6 +62,23 @@ class Blog extends Site_Controller
 
 		// Load Login Is Enabled
 		$this->data['sidebar'] = $this->render_widgets('sidebar');		
+	
+		$this->render();
+	}
+	
+	function categories()
+	{
+		$category = $this->social_tools-> get_category_title_url('category', $this->uri->segment(3));
+		if (!$category) redirect(404);
+
+		$this->data['articles'] 	= $this->social_igniter->get_content_view('category_id', $category->category_id, config_item('blog_posts_per_page'));
+		$this->data['category']		= $category;
+		
+		$this->data['sub_title']	= $category->category;
+		$this->data['page_title']	= 'Categories';
+	
+		// Load Login Is Enabled
+		$this->data['sidebar'] 		= $this->render_widgets('sidebar');
 	
 		$this->render();
 	}

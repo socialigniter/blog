@@ -11,7 +11,7 @@
 * All routes must start with the first segment being 'blog'
 */
 $route['blog'] 																	= 'blog';
-$route['blog/category/(:any)']													= 'category/view';
+$route['blog/categories/(:any)']												= 'blog/categories';
 $route['blog/view/(:num)']														= 'blog/view';
 $route['blog/(19|20)[0-9]{2}/(0[1-9]|1[012])/(0[1-9]|[12][0-9]|3[01])/(:any)']	= 'blog/view';
 $route['blog/(19|20)[0-9]{2}/(0[1-9]|1[012])/(0[1-9]|[12][0-9]|3[01])']			= 'blog/day';

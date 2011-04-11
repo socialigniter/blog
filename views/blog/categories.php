@@ -1,16 +1,23 @@
 <ul id="content_list">
-
 <li class="content_container">
 	
+	<h2>Articles in <?= $category->category ?></h2>
+
+	<p><?= $category->description ?></p>
+
+</li>
+
+<?php foreach ($articles as $article): $article_link = post_link($blog_path, $url_style, $article->created_at, $article->title_url); ?>
+
+<li class="content_container">
+
 	<h2><a href="<?= $article_link ?>"><?= $article->title ?></a></h2>
-	
+
 	<h4><?= post_category($categories_display, $blog_path, $categories_array, $article->category_id) ?> by <a href="<?= base_url() ?>profile/<?= $article->username ?>"><?= $article->name ?></a> on <?= human_date($date_style, mysql_to_unix($article->created_at)) ?></h4>
-	
+
 	<div class="content_text">
-		<?= $article->content ?>
+		<?= post_content($abbreviate_post, $abbreviate_length, $article->content, $article_link) ?>
 	</div>
-	
-	<h3>Share</h3>
 	
 	<div class="content_actions">
 		<h4><img src="<?= $site_assets ?>icons/comments_24.png"> <?= post_comments($article->comments_count, $article_link, 'Comments').post_write_comments($comments_allow, $article_link, 'Write Comment') ?></h4>
@@ -22,12 +29,10 @@
 		</tr>
 		</table>
 	
-	</div>
-	
-	<div class="clear"></div>				
-	
-	<?= $comments_view ?>
+	</div>	
 
+	<div class="clear"></div>
 </li>
-
+	
+<?php endforeach; ?>
 </ul>
