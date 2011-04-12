@@ -105,17 +105,17 @@ class Blog extends Site_Controller
 	}	
 	
 	/* Widgets */
-	function widgets_sidebar_recent()
+	function widgets_recent_articles()
 	{
 		$this->data['posts'] = $this->social_igniter->get_content_view('type', 'article', 5);
 		
-		$this->load->view('partials/widgets_sidebar', $this->data);
+		$this->load->view('widgets/recent_articles', $this->data);
 	}
 
-	function widgets_sidebar_tags()
+	function widgets_tag_cloud()
 	{
-		$this->data['posts'] = $this->social_tools->get_tags('type', 'article', 5);
+		$this->data['tags'] = $this->social_tools->get_tags('type', 'article', 5);
 		
-		$this->load->view('partials/widgets_sidebar', $this->data);
+		$this->load->view('widgets/tag_cloud', $this->data);
 	}	
 }
