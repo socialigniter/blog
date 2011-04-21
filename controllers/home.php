@@ -69,7 +69,7 @@ class Home extends Dashboard_Controller
 		$this->data['form_type']			= 'article';		
 		$this->data['form_name']			= 'blog_editor';
 		$this->data['categories'] 			= $this->social_tools->make_categories_dropdown('module', 'blog', $this->session->userdata('user_id'), $this->session->userdata('user_level_id'));
-	 	$this->data['content_publisher'] 	= $this->load->view(config_item('dashboard_theme').'/partials/content_publisher', $this->data, true);
+	 	$this->data['content_publisher'] 	= $this->social_igniter->make_content_publisher($this->data, 'form');
 							
  		$this->render('dashboard_wide');
 	}

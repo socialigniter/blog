@@ -20,7 +20,6 @@ class Blog extends Site_Controller
 		$this->data['abbreviate_length']	= config_item('blog_abbreviate_length');
 		$this->data['posts_per_page']		= config_item('blog_posts_per_page');
 		$this->data['comments_allow']		= config_item('blog_comments_allow');
-
 	}
 	
 	function index()
@@ -28,9 +27,8 @@ class Blog extends Site_Controller
 		$this->data['articles'] = $this->social_igniter->get_content_view('module', 'blog', config_item('blog_posts_per_page'));
 		$this->data['page_title'] = 'Blog';		
 		
-		// Widgets
-		$this->data['sidebar'] = $this->render_widgets('sidebar');		
-		
+		// Widgets	
+				
 		$this->render();
 	}
 
@@ -58,10 +56,7 @@ class Blog extends Site_Controller
 		if ((config_item('blog_comments_allow') == 'TRUE') && ($article->comments_allow != 'N'))
 		{				
 			$this->data['comments_view'] = $this->social_tools->make_comments_section($article->content_id, 'page', $this->data['logged_user_id'], $this->data['logged_user_level_id']);
-		}
-
-		// Load Login Is Enabled
-		$this->data['sidebar'] = $this->render_widgets('sidebar');		
+		}	
 	
 		$this->render();
 	}
@@ -76,10 +71,7 @@ class Blog extends Site_Controller
 		
 		$this->data['sub_title']	= $category->category;
 		$this->data['page_title']	= 'Categories';
-	
-		// Load Login Is Enabled
-		$this->data['sidebar'] 		= $this->render_widgets('sidebar');
-	
+
 		$this->render();
 	}
 	
