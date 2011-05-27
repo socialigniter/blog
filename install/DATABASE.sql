@@ -1,5 +1,7 @@
 INSERT INTO `content` VALUES (NULL, 1, 0, 0, 'pages', 'page', 'website', NULL, 1, 'Blog', 'blog', NULL, 'module_page', 'E', 'Y', NULL, NULL, NULL, 'Y', 'A', 'P', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
+INSERT INTO `settings` VALUES(NULL, 1, 'blog', 'widgets', 'TRUE');
+INSERT INTO `settings` VALUES(NULL, 1, 'blog', 'categories', 'TRUE');
 INSERT INTO `settings` VALUES(NULL, 1, 'blog', 'enabled', 'TRUE');
 INSERT INTO `settings` VALUES(NULL, 1, 'blog', 'create_permission', '3');
 INSERT INTO `settings` VALUES(NULL, 1, 'blog', 'publish_permission', '2');

@@ -12,6 +12,8 @@
 */
 
 $config['blog_path']			= 'blog/';
+$config['blog_widgets']			= TRUE;
+$config['blog_categories']		= TRUE;
 $config['url_style_posts']		= array(
 	'all'	=> '2010 / 01 / 01 / name-of-post',
 	'month'	=> '2010 / 01 / name-of-post',

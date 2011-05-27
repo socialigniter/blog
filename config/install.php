@@ -16,6 +16,8 @@
 $config['blog_content'][] = array('pages', 'page', 'website', NULL, 1, 'Blog', 'blog', NULL, 'module_page', 'E', 'Y', NULL, NULL, NULL, 'Y', 'A', 'P');
 
 /* Settings */
+$config['blog_settings']['widgets'] 			= 'TRUE';
+$config['blog_settings']['categories'] 			= 'TRUE';
 $config['blog_settings']['enabled']				= 'TRUE';
 $config['blog_settings']['create_permission']	= '3';
 $config['blog_settings']['publish_permission']	= '2';
