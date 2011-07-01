@@ -17,6 +17,7 @@
 	
 		<table border="0" cellpadding="4" width="215">
 		<tr>
+			<td><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><g:plusone size="medium" href="<?= $article_link ?>"></g:plusone></td>		
 			<td><a href="http://twitter.com/share" class="twitter-share-button" data-url="<?= $article_link ?>" data-text="<?= $article->title ?>" data-count="horizontal" data-via="<?= config_item('twitter_default_account') ?>">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script></td>
 			<td><a name="fb_share" type="box_count" share_url="<?= $article_link ?>" href="http://www.facebook.com/sharer.php">Share</a><script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script></td>
 		</tr>
