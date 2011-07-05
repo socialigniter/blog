@@ -17,7 +17,7 @@ class Api extends Oauth_Controller
 		// Settings & Create Folders
 		$settings = $this->installer->install_settings('blog', config_item('blog_settings'));
 	
-		if ($settings == TRUE AND $folders == TRUE)
+		if ($settings == TRUE)
 		{
             $message = array('status' => 'success', 'message' => 'Yay, the Blog App was installed');
         }
@@ -33,16 +33,16 @@ class Api extends Oauth_Controller
 	{
 		$this->load->library('installer');
 	
-		$settings	= $this->installer->uninstall_settings('media');
-		$files		= $this->installer->delete_app('app');
+		$settings	= $this->installer->uninstall_settings('blog');
+		$files		= $this->installer->delete_app('blog');
 	
 		if ($settings == true AND $files == true)
 		{		
-            $message = array('status' => 'success', 'message' => 'Media App was unistalled');
+            $message = array('status' => 'success', 'message' => 'Blog App was unistalled', 'data' => array($settings, $files));
         }
         else
         {
-            $message = array('status' => 'error', 'message' => 'Dang, the Media App could not be uninstalled');
+            $message = array('status' => 'error', 'message' => 'Dang, the Blog App could not be uninstalled', 'data' => array($settings, $files));
         }		
 		
 		$this->response($message, 200);	
