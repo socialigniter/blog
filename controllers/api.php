@@ -29,23 +29,4 @@ class Api extends Oauth_Controller
 		$this->response($message, 200);
 	} 
 
-	function uninstall_authd_get()
-	{
-		$this->load->library('installer');
-	
-		$settings	= $this->installer->uninstall_settings('blog');
-		$files		= $this->installer->delete_app('blog');
-	
-		if ($settings == true AND $files == true)
-		{		
-            $message = array('status' => 'success', 'message' => 'Blog App was unistalled', 'data' => array($settings, $files));
-        }
-        else
-        {
-            $message = array('status' => 'error', 'message' => 'Dang, the Blog App could not be uninstalled', 'data' => array($settings, $files));
-        }		
-		
-		$this->response($message, 200);	
-	}
-	
 }

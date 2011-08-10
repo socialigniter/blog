@@ -54,7 +54,7 @@ $(document).ready(function()
 	$('#title').slugify({url:base_url+current_module+'/posts/', slug:'#title_slug', name:'title_url', slugValue:'<?= $title_url ?>'});
 
 	// Autocomplete Tags
-	autocomplete("[name=tags]", 'api/tags/all');
+	autocomplete("[name=tags]", 'api/tags/all', 'tag');
 
 	// Add Category
 	$('[name=category_id]').change(function()
