@@ -14,7 +14,13 @@ class Settings extends Dashboard_Controller
     }
  
  	function index()
-	{ 	
+	{
+		if (config_item('blog_enabled') == '') 
+		{
+			$this->session->set_flashdata('message', 'Oops, the Blog app is not installed');
+			redirect('settings/apps');
+		}
+	
 		$this->data['sub_title'] 	= 'Settings';
 		$this->data['shared_ajax'] .= $this->load->view(config_item('dashboard_theme').'/partials/settings_modules_ajax.php', $this->data, true);		
 		$this->render('dashboard_wide');
