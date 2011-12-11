@@ -9,7 +9,7 @@
 		<?= $wysiwyg ?>
 	
 	    <h3>Category</h3>
-	    <p><?= form_dropdown('category_id', $categories, $category_id) ?></p>
+	    <p><?= form_dropdown('category_id', $categories, $category_id, 'id="category_id"') ?></p>
 	
 	     <h3>Tags</h3>
 	     <p><input name="tags" type="text" id="tags" size="75" value="" /></p>
@@ -57,25 +57,13 @@ $(document).ready(function()
 	autocomplete("[name=tags]", 'api/tags/all', 'tag');
 
 	// Add Category
-	$('[name=category_id]').change(function()
-	{	
-		if($(this).val() == 'add_category')
-		{
-			$('[name=category_id]').find('option:first').attr('selected','selected');
-			$.uniform.update('[name=category_id]');
-
-			$.categoryEditor(
-			{
-				url_api		: base_url + 'api/categories/view/module/blog',
-				url_pre		: base_url + 'blog/categories/',
-				url_sub		: base_url + 'api/categories/create',				
-				module		: 'blog',
-				type		: 'category',
-				title		: 'Add Category',
-				slug_value	: '',
-				trigger		: $('.content [name=category_id]')
-			});			
-		}
-	});		
+	$('#category_id').categoryManager(
+	{
+		action		: 'create',			
+		module		: 'blog',
+		type		: 'category',
+		title		: 'Add Category'
+	});
+	
 });
 </script>
