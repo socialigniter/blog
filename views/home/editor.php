@@ -64,6 +64,6 @@ $(document).ready(function()
 		type		: 'category',
 		title		: 'Add Category'
 	});
-	
+
 });
 </script>
