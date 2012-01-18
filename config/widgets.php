@@ -20,6 +20,7 @@ $config['blog_widgets'][] = array(
 		'path'		=> 'widgets_recent_articles',
 		'multiple'	=> 'FALSE',
 		'order'		=> '1',
+		'title'		=> 'Recent Articles',
 		'content'	=> ''
 	)
 );
@@ -33,6 +34,7 @@ $config['blog_widgets'][] = array(
 		'path'		=> 'widgets_tag_cloud',
 		'multiple'	=> 'FALSE',
 		'order'		=> '1',
+		'title'		=> 'Tags',		
 		'content'	=> ''
 	)
 );
