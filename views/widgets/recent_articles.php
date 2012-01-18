@@ -1,5 +1,5 @@
 <div class="widget_<?= $widget_region ?> widget_blog_recent_articles" id="widget_<?= $widget_id ?>">
-	<h2>Recent Posts</h2>
+	<h2><?= $widget_title ?></h2>
 	<ul>
 	<?php if ($posts): foreach ($posts as $post): $post_link = post_link($blog_path, $url_style, $post->created_at, $post->title_url); ?>
 		<li><a href="<?= $post_link ?>"><?= $post->title ?></a></li>
