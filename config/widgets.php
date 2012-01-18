@@ -24,17 +24,3 @@ $config['blog_widgets'][] = array(
 		'content'	=> ''
 	)
 );
-
-$config['blog_widgets'][] = array(
-	'regions'	=> array('sidebar', 'content', 'wide'),
-	'widget'	=> array(
-		'module'	=> 'blog',
-		'name'		=> 'Tag Cloud',
-		'method'	=> 'run',
-		'path'		=> 'widgets_tag_cloud',
-		'multiple'	=> 'FALSE',
-		'order'		=> '1',
-		'title'		=> 'Tags',		
-		'content'	=> ''
-	)
-);

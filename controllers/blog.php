@@ -103,11 +103,5 @@ class Blog extends Site_Controller
 		
 		$this->load->view('widgets/recent_articles', $widget_data);
 	}
-
-	function widgets_tag_cloud($widget_data)
-	{
-		$widget_data['tags'] = $this->social_tools->get_tags('type', 'article', 5);
-		
-		$this->load->view('widgets/tag_cloud', $widget_data);
-	}	
+	
 }
