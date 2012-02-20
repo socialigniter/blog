@@ -1,20 +1,17 @@
-<ul id="content_list">
-<li class="content_container"><h2>Blog</h2></li>
 <?php foreach ($articles as $article): $article_link = post_link($blog_path, $url_style, $article->created_at, $article->title_url); ?>
 
-<li class="content_container">
+<div class="content_container">
 
 	<h2><a href="<?= $article_link ?>"><?= $article->title ?></a></h2>
-
 	<h4><?= post_category($categories_display, $blog_path, $categories_array, $article->category_id) ?> by <a href="<?= base_url() ?>profile/<?= $article->username ?>"><?= $article->name ?></a> on <?= human_date($date_style, mysql_to_unix($article->created_at)) ?></h4>
 
 	<div class="content_text">
 		<?= post_content($abbreviate_post, $abbreviate_length, $article->content, $article_link) ?>
 	</div>
-	
+
 	<div class="content_actions">
-		<h4><img src="<?= $site_assets ?>icons/comments_24.png"> <?= post_comments($article->comments_count, $article_link, 'Comments').post_write_comments($comments_allow, $article_link, 'Write Comment') ?></h4>
-	
+		<h3>Share</h3>	
+
 		<table border="0" cellpadding="4" width="215">
 		<tr>
 			<td><script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script><g:plusone size="medium" href="<?= $article_link ?>"></g:plusone></td>		
@@ -22,11 +19,9 @@
 			<td><iframe src="//www.facebook.com/plugins/like.php?href=<?= $article_link ?>&amp;send=false&amp;layout=button_count&amp;width=450&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=112321278779214" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:21px;" allowTransparency="true"></iframe></td>
 		</tr>
 		</table>
-	
-	</div>	
+	</div>
 
 	<div class="clear"></div>
-</li>
+</div>
 	
 <?php endforeach; ?>
-</ul>
