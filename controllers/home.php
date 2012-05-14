@@ -5,13 +5,11 @@ class Home extends Dashboard_Controller
     {
         parent::__construct();
 
-		$this->data['page_title'] = 'Blog';
-
-		$this->load->config('blog');				
+		$this->load->config('blog');
 		$this->load->helper('blog');
 
-		/* Blog Settings */
-		$this->data['blog_path'] = config_item('blog_path');		
+		$this->data['page_title']	= 'Blog';
+		$this->data['blog_path']	= config_item('blog_path');
 	}
 	
 	function index()
@@ -59,6 +57,7 @@ class Home extends Dashboard_Controller
 		$this->data['wysiwyg_name']			= 'content';
 		$this->data['wysiwyg_id']			= 'wysiwyg_content';
 		$this->data['wysiwyg_class']		= 'wysiwyg_norm_full';
+		$this->data['wysiwyg_js']			= TRUE;		
 		$this->data['wysiwyg_width']		= 640;
 		$this->data['wysiwyg_height']		= 300;
 		$this->data['wysiwyg_resize']		= TRUE;

@@ -1,7 +1,6 @@
 <?php
 class Settings extends Dashboard_Controller 
 {
-
     function __construct() 
     {
         parent::__construct();
@@ -28,8 +27,7 @@ class Settings extends Dashboard_Controller
 
 	function widgets()
 	{
-		$this->data['sub_title'] 	= 'Widgets';		
-		
+		$this->data['sub_title'] 	= 'Widgets';
 		$this->render('dashboard_wide');
 	}
 

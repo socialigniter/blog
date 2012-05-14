@@ -33,7 +33,6 @@
 <div class="clear"></div>
 
 <script type="text/javascript">
-
 // Elements for Placeholder
 var validation_rules = [{
 	'element' 	: '#title', 
