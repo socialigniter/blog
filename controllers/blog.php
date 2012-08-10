@@ -52,12 +52,7 @@ class Blog extends Site_Controller
 		$this->data['content_id']		= $article->content_id;
 		$this->data['comments_tool']	= '';
 
-		// Comments
-		if ((config_item('blog_comments_allow') == 'TRUE') && ($article->comments_allow != 'N'))
-		{				
-			$this->data['comments_view'] = $this->social_tools->make_comments_section($article->content_id, 'page', $this->data['logged_user_id'], $this->data['logged_user_level_id']);
-		}	
-	
+		// Comments	
 		$this->render();
 	}
 	

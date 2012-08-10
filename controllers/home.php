@@ -61,7 +61,7 @@ class Home extends Dashboard_Controller
 		$this->data['wysiwyg_width']		= 640;
 		$this->data['wysiwyg_height']		= 300;
 		$this->data['wysiwyg_resize']		= TRUE;
-		$this->data['wysiwyg_media']		= TRUE;			
+		$this->data['wysiwyg_media']		= FALSE;			
 		$this->data['wysiwyg']	 			= $this->load->view($this->config->item('dashboard_theme').'/partials/wysiwyg', $this->data, true);
 
 		$this->data['form_module']			= 'blog';
