@@ -34,7 +34,7 @@ class Blog extends Site_Controller
 
 	function view() 
 	{		
-		// Basic Content Redirect	
+		// Basic Content Redirect
 		if ($this->uri->segment(2) == 'view')
 		{
 			$article = $this->social_igniter->get_content($this->uri->segment(3));
@@ -43,6 +43,7 @@ class Blog extends Site_Controller
 		else
 		{
 			$article = $this->social_igniter->get_content_title_url('article', $this->uri->segment($this->uri->total_segments()));
+			if (!$article) redirect('blog');
 		}	
 				
 		// Blog Post	
